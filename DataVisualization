@@ -1,0 +1,23 @@
+import pandas as pd
+import seaborn as sns
+import numpy as np
+import matplotlib.pyplot as plt
+import math
+import plotly.express as px
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+from sklearn.pipeline import make_pipeline
+from yellowbrick.cluster import KElbowVisualizer
+from mpl_toolkits.mplot3d import Axes3D
+df = pd.read_csv("watson_healthcare_modified.csv")
+df.dropna(inplace=True)
+df.reset_index(inplace=True, drop=True)
+df.head()
+  X = df.select_dtypes('number').copy()
+X.head()
+  scaler = StandardScaler()
+decomp = PCA()
+pipe = make_pipeline(scaler, decomp)
+
+pipe.fit(X)
